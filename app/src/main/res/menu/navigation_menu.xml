@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/menu_top">
+        <item
+            android:id="@+id/nav_auftraege"
+            android:icon="@mipmap/ic_assignment_black_24dp"
+            android:title="Aufträge" />
+
+        <item
+            android:id="@+id/nav_erledigt"
+            android:icon="@mipmap/ic_done_black_24dp"
+            android:title="Erledigt" />
+    </group>
+
+    <group android:id="@+id/menu_bottom">
+        <item
+            android:id="@+id/nav_import"
+            android:icon="@mipmap/ic_file_download_black_24dp"
+            android:title="Import" />
+
+        <item
+            android:id="@+id/nav_export"
+            android:icon="@mipmap/ic_file_upload_black_24dp"
+            android:title="Export" />
+    </group>
+
+
+</menu>
