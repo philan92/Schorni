@@ -1,9 +1,11 @@
-package de.philipplange.schorni.src;
+package de.philipplange.schorni.src.adapter;
 
 
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import de.philipplange.schorni.src.fragments.PageFragment;
 
 /**
  * Created by Philipp on 15.05.2017.

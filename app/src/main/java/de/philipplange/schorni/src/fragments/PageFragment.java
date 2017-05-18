@@ -1,4 +1,4 @@
-package de.philipplange.schorni.src;
+package de.philipplange.schorni.src.fragments;
 
 
 import android.os.Bundle;
