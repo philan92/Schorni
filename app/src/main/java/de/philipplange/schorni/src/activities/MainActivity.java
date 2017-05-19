@@ -1,6 +1,5 @@
 package de.philipplange.schorni.src.activities;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,15 +7,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
 
 import de.philipplange.schorni.R;
 import de.philipplange.schorni.src.adapter.SampleFragmentPagerAdapter;
-import de.philipplange.schorni.src.hilfsklassen.DatabaseHelper;
-import de.philipplange.schorni.src.models.Kehrung;
-
-import static nl.qbusict.cupboard.CupboardFactory.cupboard;
+import de.philipplange.schorni.src.hilfsklassen.ListenKoordinator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +28,43 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+/*
+        /////////////////////////////////////////////////////////TESTBEREICH
+        // Damit hat man Zugriff auf die Datenbank
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // zu Testzwecken bei jedem Start DB loeschen
+        cupboard().withDatabase(db).delete(Kehrung.class, null);
+
+        Kehrung kehrung = new Kehrung("Strasse 1, 123456 Fummelsdorf", "Hidolf Atler", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung.setTableId(1);
+        //kehrung.setErledigt(new Date().getTime());
+        cupboard().withDatabase(db).put(kehrung);
+
+        kehrung = new Kehrung("Strasse 2, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung.setTableId(1);
+        //kehrung.setErledigt(new Date().getTime());
+        cupboard().withDatabase(db).put(kehrung);
+
+        kehrung = new Kehrung("Strasse 3, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung.setTableId(2);
+        kehrung.setErledigt(new Date().getTime());
+        cupboard().withDatabase(db).put(kehrung);
+
+        kehrung = new Kehrung("Strasse 3, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung.setTableId(3);
+        cupboard().withDatabase(db).put(kehrung);
+
+        //Kehrung k = cupboard().withDatabase(db).get(Kehrung.class, 2);
+        //Log.d("TESTING", k.toString());
+
+
+        /////////////////////////////////////////////////////////TESTBEREICH ENDE
+*/
+        ListenKoordinator koordinator = new ListenKoordinator(this);
+        ArrayList<Long> liste = koordinator.getAktiveListIDs();
+
 
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -46,28 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this));
+        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this, liste));
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 
-        /////////////////////////////////////////////////////////TESTBEREICH
-        // Damit hat man Zugriff auf die Datenbank
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        // zu Testzwecken bei jedem Start DB loeschen
-        cupboard().withDatabase(db).delete(Kehrung.class, null);
-
-        //Kehrung kehrung = new Kehrung("Witzstrasse 18, 123456 Fummelsdorf", "Hidolf Atler", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
-        //cupboard().withDatabase(db).put(kehrung);
-
-        Kehrung k = cupboard().withDatabase(db).get(Kehrung.class, 2);
-        Log.d("TESTING", k.toString());
-
-
-        /////////////////////////////////////////////////////////TESTBEREICH ENDE
     }
 
 

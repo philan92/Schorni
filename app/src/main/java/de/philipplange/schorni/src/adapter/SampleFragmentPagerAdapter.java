@@ -5,6 +5,8 @@ import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
+
 import de.philipplange.schorni.src.fragments.PageFragment;
 
 /**
@@ -12,18 +14,21 @@ import de.philipplange.schorni.src.fragments.PageFragment;
  */
 
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 6;
-    private String tabTitles[] = new String[]{"#0001", "#0002", "#0003", "#0004", "#0005", "#0006"};
+
+    int pageCount = 0;
+    private ArrayList<Long> tableIDs;
     private Context context;
 
-    public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
+    public SampleFragmentPagerAdapter(FragmentManager fm, Context context, ArrayList<Long> tableIDs) {
         super(fm);
         this.context = context;
+        this.pageCount = tableIDs.size();
+        this.tableIDs = tableIDs;
     }
 
     @Override
     public int getCount() {
-        return PAGE_COUNT;
+        return pageCount;
     }
 
     @Override
@@ -33,7 +38,8 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        // Generate title based on item position
-        return tabTitles[position];
+        return "# " + tableIDs.get(position).toString();
     }
+
+
 }
