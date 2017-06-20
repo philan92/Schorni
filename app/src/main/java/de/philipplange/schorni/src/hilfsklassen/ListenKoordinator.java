@@ -22,6 +22,7 @@ public class ListenKoordinator {
         db = dbHelper.getWritableDatabase();
     }
 
+
     /**
      * Gibt eine Liste mit den ListIDs, in denen es noch nicht abgeschlossene Auftraege gibt
      *
@@ -45,7 +46,41 @@ public class ListenKoordinator {
         return liste;
     }
 
-    Kehrung offeneKehrungen() {
-        return null;
+    /**
+     * Gibt eine Liste mit IDs aller offenen Kehrungen zurück
+     *
+     * @return Liste aller offenen Kehrungen
+     */
+    public ArrayList<Long> offeneKehrungen() {
+        // TODO Optimisation; nur Kehrungen die noch nicht abgeschlossen sind aus der DB holen
+        ArrayList<Long> liste = new ArrayList<>();
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
+        try {
+            QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
+            for (Kehrung kehrung : itr) {
+                long id = kehrung.getId();
+                if (kehrung.getErledigt() == null)
+                    liste.add(id);
+            }
+        } finally {
+            kehrungen.close();
+        }
+        return liste;
+    }
+
+    public ArrayList<Kehrung> offeneKehrungen(long listID) {
+        // TODO Optimisation; nur Kehrungen die noch nicht abgeschlossen sind aus der DB holen
+        ArrayList<Kehrung> liste = new ArrayList<>();
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
+        try {
+            QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
+            for (Kehrung kehrung : itr) {
+                if (kehrung.getErledigt() == null && kehrung.getTableId() == listID)
+                    liste.add(kehrung);
+            }
+        } finally {
+            kehrungen.close();
+        }
+        return liste;
     }
 }

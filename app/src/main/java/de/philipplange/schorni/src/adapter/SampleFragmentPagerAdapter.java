@@ -9,14 +9,14 @@ import java.util.ArrayList;
 
 import de.philipplange.schorni.src.fragments.PageFragment;
 
-/**
- * Created by Philipp on 15.05.2017.
- */
 
+/**
+ * Adapter für die Fragmente, die in den verschiedenen Tabs angezeigt werden
+ */
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    int pageCount = 0;
-    private ArrayList<Long> tableIDs;
+    private int pageCount = 0;
+    private ArrayList<Long> tableIDs; // Liste mit den ListIDs, die geziegt werden
     private Context context;
 
     public SampleFragmentPagerAdapter(FragmentManager fm, Context context, ArrayList<Long> tableIDs) {
@@ -33,7 +33,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public android.support.v4.app.Fragment getItem(int position) {
-        return PageFragment.newInstance(position + 1);
+        return PageFragment.newInstance(position + 1, tableIDs.get(position));
     }
 
     @Override

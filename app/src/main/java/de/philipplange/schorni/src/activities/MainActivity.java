@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import de.philipplange.schorni.R;
 import de.philipplange.schorni.src.adapter.SampleFragmentPagerAdapter;
+import de.philipplange.schorni.src.hilfsklassen.DatenbankTestdaten;
 import de.philipplange.schorni.src.hilfsklassen.ListenKoordinator;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,40 +29,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-        /////////////////////////////////////////////////////////TESTBEREICH
-        // Damit hat man Zugriff auf die Datenbank
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        // zu Testzwecken bei jedem Start DB loeschen
-        cupboard().withDatabase(db).delete(Kehrung.class, null);
+        // erzeugt Testdaten zum Debuggen
+        DatenbankTestdaten.erzeugeDBTestDaten(this);
 
-        Kehrung kehrung = new Kehrung("Strasse 1, 123456 Fummelsdorf", "Hidolf Atler", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
-        kehrung.setTableId(1);
-        //kehrung.setErledigt(new Date().getTime());
-        cupboard().withDatabase(db).put(kehrung);
-
-        kehrung = new Kehrung("Strasse 2, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
-        kehrung.setTableId(1);
-        //kehrung.setErledigt(new Date().getTime());
-        cupboard().withDatabase(db).put(kehrung);
-
-        kehrung = new Kehrung("Strasse 3, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
-        kehrung.setTableId(2);
-        kehrung.setErledigt(new Date().getTime());
-        cupboard().withDatabase(db).put(kehrung);
-
-        kehrung = new Kehrung("Strasse 3, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
-        kehrung.setTableId(3);
-        cupboard().withDatabase(db).put(kehrung);
-
-        //Kehrung k = cupboard().withDatabase(db).get(Kehrung.class, 2);
-        //Log.d("TESTING", k.toString());
-
-
-        /////////////////////////////////////////////////////////TESTBEREICH ENDE
-*/
+        // Aktive Listen in die Shared Preferences schreiben
         ListenKoordinator koordinator = new ListenKoordinator(this);
         ArrayList<Long> liste = koordinator.getAktiveListIDs();
 
@@ -85,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
+        System.out.println();
 
     }
 
