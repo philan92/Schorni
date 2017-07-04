@@ -83,4 +83,20 @@ public class ListenKoordinator {
         }
         return liste;
     }
+
+    public ArrayList<Kehrung> erledigteKehrungen() {
+        // TODO Optimisation; nur Kehrungen die abgeschlossen sind aus der DB holen
+        ArrayList<Kehrung> liste = new ArrayList<>();
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
+        try {
+            QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
+            for (Kehrung kehrung : itr) {
+                if (kehrung.getErledigt() != null)
+                    liste.add(kehrung);
+            }
+        } finally {
+            kehrungen.close();
+        }
+        return liste;
+    }
 }
