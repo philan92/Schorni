@@ -1,6 +1,8 @@
 package de.philipplange.schorni.src.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
 
     private Toolbar mToolbar;
+    NavigationView nvDrawer;
 
 
     @Override
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         DatenbankTestdaten.erzeugeDBTestDaten(this);
 
         // Aktive Listen in die Shared Preferences schreiben
+        // TODO kann vermutlich gelöscht werden
         ListenKoordinator koordinator = new ListenKoordinator(this);
         ArrayList<Long> liste = koordinator.getAktiveListIDs();
 
@@ -50,6 +54,21 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Set up Side Menu
+        nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        nvDrawer.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case (R.id.nav_auftraege):
+                        Intent auftraegeActivity = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(auftraegeActivity);
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this, liste));
@@ -57,15 +76,20 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+
+
         System.out.println();
 
     }
 
 
+    // Gibt dem Menubutton seine Funktionalität
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return mToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
+
+
 }
 
 
