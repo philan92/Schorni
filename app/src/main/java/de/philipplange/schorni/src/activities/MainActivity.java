@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -64,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
                     case (R.id.nav_auftraege):
                         Intent auftraegeActivity = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(auftraegeActivity);
-                        mDrawerLayout.closeDrawers();
+                        finish();
                         break;
                     case (R.id.nav_erledigt):
                         Intent erledigtActivity = new Intent(getApplicationContext(), ErledigtActivity.class);
                         startActivity(erledigtActivity);
-                        mDrawerLayout.closeDrawers();
+                        finish();
                         break;
                 }
                 return true;
