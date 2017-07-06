@@ -1,8 +1,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
     tools:context="de.philipplange.schorni.src.fragments.AuftragDetailFragment"
     tools:layout_editor_absoluteX="0dp"
@@ -68,12 +68,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <ImageView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:alpha="0.5"
                 android:padding="5dp"
-                android:text="Name" />
+                app:srcCompat="@mipmap/ic_person_black_24dp" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -94,12 +95,13 @@
             android:layout_height="match_parent"
             android:paddingBottom="10dp">
 
-            <TextView
+            <ImageView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:alpha="0.5"
                 android:padding="5dp"
-                android:text="Adresse" />
+                app:srcCompat="@mipmap/ic_home_black_24dp" />
 
             <TextView
                 android:id="@+id/tvAdresse"
@@ -119,12 +121,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <ImageView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:alpha="0.5"
                 android:padding="5dp"
-                android:text="Telefon" />
+                app:srcCompat="@mipmap/ic_phone_black_24dp" />
 
             <TextView
                 android:id="@+id/tvTelefon"
@@ -140,13 +143,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <ImageView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:alpha="0.5"
                 android:padding="5dp"
-                android:text="Kürzel" />
+                app:srcCompat="@mipmap/ic_search_black_24dp" />
 
             <TextView
                 android:id="@+id/tvKuerzel"
@@ -162,13 +166,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <ImageView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:alpha="0.5"
                 android:padding="5dp"
-                android:text="Info" />
+                app:srcCompat="@mipmap/ic_info_black_24dp" />
 
             <TextView
                 android:id="@+id/tvInfo"
