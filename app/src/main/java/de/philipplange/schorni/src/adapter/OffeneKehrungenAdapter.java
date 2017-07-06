@@ -31,7 +31,7 @@ public class OffeneKehrungenAdapter extends ArrayAdapter<Kehrung> {
         }
         // Lookup view for data population
         TextView tvAdresse = (TextView) convertView.findViewById(R.id.tvAdresse);
-        TextView tvName = (TextView) convertView.findViewById(R.id.tvAdresse);
+        TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
         // Populate the data into the template view using the data object
         if (kehrung != null) {
             tvAdresse.setText(kehrung.getAdresse());

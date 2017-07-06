@@ -24,12 +24,12 @@ public class DatenbankTestdaten {
         // zu Testzwecken bei jedem Start DB loeschen
         cupboard().withDatabase(db).delete(Kehrung.class, null);
 
-        Kehrung kehrung = new Kehrung("Strasse 1, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        Kehrung kehrung = new Kehrung("Strasse 1, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "Das ist eine Bemerkung.", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 2, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 2, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", true);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);

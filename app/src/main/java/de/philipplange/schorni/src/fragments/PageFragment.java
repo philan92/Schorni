@@ -72,6 +72,7 @@ public class PageFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Kehrung kehrung = (Kehrung) adapterView.getItemAtPosition(i);
                 Intent detailActivity = new Intent(getActivity(), AuftragDetailsActivity.class);
+                detailActivity.putExtra("id", kehrung.getId());
                 startActivity(detailActivity);
             }
         });
