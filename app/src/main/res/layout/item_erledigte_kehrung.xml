@@ -20,7 +20,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvAdresse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -59,9 +59,9 @@
         android:gravity="end"
         android:textColor="@color/colorPrimaryLight"
         android:textSize="18sp"
-        android:layout_below="@+id/tvName"
-        android:layout_alignLeft="@+id/tvName"
-        android:layout_alignStart="@+id/tvName" />
+        android:layout_below="@+id/tvAdresse"
+        android:layout_alignLeft="@+id/tvAdresse"
+        android:layout_alignStart="@+id/tvAdresse" />
 
 </RelativeLayout>
 
