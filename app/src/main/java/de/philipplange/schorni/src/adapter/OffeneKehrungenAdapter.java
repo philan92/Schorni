@@ -44,4 +44,6 @@ public class OffeneKehrungenAdapter extends ArrayAdapter<Kehrung> {
         return convertView;
 
     }
+
+
 }

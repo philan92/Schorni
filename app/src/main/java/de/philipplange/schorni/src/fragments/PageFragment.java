@@ -1,16 +1,19 @@
 package de.philipplange.schorni.src.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import de.philipplange.schorni.R;
+import de.philipplange.schorni.src.activities.AuftragDetailsActivity;
 import de.philipplange.schorni.src.adapter.OffeneKehrungenAdapter;
 import de.philipplange.schorni.src.hilfsklassen.ListenKoordinator;
 import de.philipplange.schorni.src.models.Kehrung;
@@ -63,6 +66,15 @@ public class PageFragment extends Fragment {
         ListView listView = (ListView) view;
         listView.setAdapter(adapter);
 
+        // Die Listeneinträge werden clickbar gemacht
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Kehrung kehrung = (Kehrung) adapterView.getItemAtPosition(i);
+                Intent detailActivity = new Intent(getActivity(), AuftragDetailsActivity.class);
+                startActivity(detailActivity);
+            }
+        });
 
         //TextView textView = (TextView) view;
         //textView.setText("Fragment #" + mPage);

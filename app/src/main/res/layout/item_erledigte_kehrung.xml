@@ -1,67 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <TextView
         android:id="@+id/tvAdresse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="5dp"
-        android:layout_marginTop="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:text="Adresse"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
-        android:id="@+id/tvAdresse"
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="5dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:text="Name"
         android:textAlignment="textEnd"
-        android:gravity="end"
         android:textColor="@color/colorPrimaryLight"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvZeit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:text="Datum"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
-        android:layout_below="@+id/tvAdresse"
-        android:layout_alignLeft="@+id/tvAdresse"
-        android:layout_alignStart="@+id/tvAdresse" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvAdresse" />
 
     <TextView
         android:id="@+id/tvKassiert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:text="Abkassiert:"
         android:textAlignment="textEnd"
-        android:gravity="end"
         android:textColor="@color/colorPrimaryLight"
         android:textSize="18sp"
-        android:layout_below="@+id/tvAdresse"
-        android:layout_alignLeft="@+id/tvAdresse"
-        android:layout_alignStart="@+id/tvAdresse" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
 
