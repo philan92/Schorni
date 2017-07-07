@@ -3,8 +3,6 @@ package de.philipplange.schorni.src.hilfsklassen;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.util.Date;
-
 import de.philipplange.schorni.src.models.Kehrung;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
@@ -35,10 +33,10 @@ public class DatenbankTestdaten {
         cupboard().withDatabase(db).put(kehrung);
 
         kehrung = new Kehrung("Strasse 3, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
-        kehrung.setTableId(1);
+        kehrung.setTableId(235);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
-
+/*
         kehrung = new Kehrung("Strasse 4, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
@@ -115,6 +113,6 @@ public class DatenbankTestdaten {
         //Kehrung k = cupboard().withDatabase(db).get(Kehrung.class, 2);
         //Log.d("TESTING", k.toString());
 
-
+*/
     }
 }

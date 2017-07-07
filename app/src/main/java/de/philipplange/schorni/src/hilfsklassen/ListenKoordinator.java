@@ -29,15 +29,14 @@ public class ListenKoordinator {
      * @return Liste mit unique ListenIDs
      */
     public ArrayList<Long> getAktiveListIDs() {
-        // TODO Optimisation; nur Kehrungen die noch nicht abgeschlossen sind aus der DB holen
         ArrayList<Long> liste = new ArrayList<>();
         //Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt = ?", "NULL").getCursor(); // Gibt alle Kehrungen, die noch nicht abgeschlossen wurden
-        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt isnull").getCursor(); // Holt alle Kehrungen aus der DB
         try {
             QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
             for (Kehrung kehrung : itr) {
                 long id = kehrung.getTableId();
-                if (kehrung.getErledigt() == null && !liste.contains(id))
+                if (!liste.contains(id))
                     liste.add(id);
             }
         } finally {
@@ -68,20 +67,14 @@ public class ListenKoordinator {
         return liste;
     }
 
+    /**
+     * Gibt alle Kehrungen einer uebergebenen Tabelle zurueck
+     *
+     * @param listID ID der Tabelle
+     * @return Liste mit Kehrungen einer bestimmten Tabelle
+     */
     public ArrayList<Kehrung> offeneKehrungen(long listID) {
-        // TODO Optimisation; nur Kehrungen die noch nicht abgeschlossen sind aus der DB holen
-        ArrayList<Kehrung> liste = new ArrayList<>();
-        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
-        try {
-            QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
-            for (Kehrung kehrung : itr) {
-                if (kehrung.getErledigt() == null && kehrung.getTableId() == listID)
-                    liste.add(kehrung);
-            }
-        } finally {
-            kehrungen.close();
-        }
-        return liste;
+        return (ArrayList<Kehrung>) cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt isnull").withSelection("tableId = ?", String.valueOf(listID)).list();
     }
 
     public ArrayList<Kehrung> erledigteKehrungen() {
@@ -100,19 +93,21 @@ public class ListenKoordinator {
         return liste;
     }
 
+    /**
+     * Gibt die Kehrung mit der uebergebenen ID aus der Datenbank zurueck.
+     * @param id ID der Kehrung, die aus der Datenbank geholt werden soll.
+     * @return Kehrung mit der uebergebenen ID.
+     */
     public Kehrung getKehrung(long id) {
-        // TODO Optimisation; nur Kehrungen die abgeschlossen sind aus der DB holen
-        Kehrung k = null;
-        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
-        try {
-            QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
-            for (Kehrung kehrung : itr) {
-                if (kehrung.getId() == id)
-                     k = kehrung;
-            }
-        } finally {
-            kehrungen.close();
-        }
-        return k;
+        return cupboard().withDatabase(db).get(Kehrung.class, id);
+    }
+
+    /**
+     * Ersetzt eine Kehrung mit der uebergebenen Kehrung
+     *
+     * @param kehrung Kehrung die mit der gleichen id ueberschrieben werden soll.
+     */
+    public void updateKehrung(Kehrung kehrung) {
+        cupboard().withDatabase(db).put(kehrung);
     }
 }

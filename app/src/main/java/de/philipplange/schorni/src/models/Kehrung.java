@@ -112,6 +112,7 @@ public class Kehrung {
     public String toString() {
         return "Kehrung{" +
                 "id=" + _id +
+                ", Listid=" + tableId +
                 ", adresse='" + adresse + '\'' +
                 ", name='" + name + '\'' +
                 ", fon='" + fon + '\'' +
