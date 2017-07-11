@@ -51,7 +51,7 @@ public class DatenbankTestdaten {
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
-/*
+
         kehrung = new Kehrung("Strasse 7, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
@@ -93,13 +93,13 @@ public class DatenbankTestdaten {
         cupboard().withDatabase(db).put(kehrung);
 
         kehrung = new Kehrung("Strasse 80, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
-        kehrung.setTableId(1);
+        kehrung.setTableId(22);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
         kehrung = new Kehrung("Strasse 3, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(2);
-        kehrung.setErledigt(new Date().getTime());
+        //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
         kehrung = new Kehrung("Strasse 4, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
@@ -113,6 +113,6 @@ public class DatenbankTestdaten {
         //Kehrung k = cupboard().withDatabase(db).get(Kehrung.class, 2);
         //Log.d("TESTING", k.toString());
 
-*/
+
     }
 }

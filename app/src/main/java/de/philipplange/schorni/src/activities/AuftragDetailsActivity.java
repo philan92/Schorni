@@ -81,5 +81,14 @@ public class AuftragDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        kehrung.setBemerkungen(String.valueOf(etNotizen.getText()));
+        kehrung.setKassiert(cbKassiert.isChecked());
+        koordinator.updateKehrung(kehrung);
     }
 }

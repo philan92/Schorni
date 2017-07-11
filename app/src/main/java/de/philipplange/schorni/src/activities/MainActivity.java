@@ -100,6 +100,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        // Wenn DetailActivity einen Auftrag abgeschlossen hat (requestCode == 1) refresh Activity
+        if (requestCode == 1) {
+            finish();
+            startActivity(getIntent());
+        }
+    }
 }
 
 

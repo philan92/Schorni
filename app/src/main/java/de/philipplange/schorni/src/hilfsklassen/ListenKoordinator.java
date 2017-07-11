@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import de.philipplange.schorni.src.models.Kehrung;
 import nl.qbusict.cupboard.QueryResultIterable;
@@ -39,6 +40,7 @@ public class ListenKoordinator {
                 if (!liste.contains(id))
                     liste.add(id);
             }
+            Collections.sort(liste);
         } finally {
             kehrungen.close();
         }
