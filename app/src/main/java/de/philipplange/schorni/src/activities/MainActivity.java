@@ -10,12 +10,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
 import de.philipplange.schorni.R;
 import de.philipplange.schorni.src.adapter.SampleFragmentPagerAdapter;
-import de.philipplange.schorni.src.hilfsklassen.DatenbankTestdaten;
 import de.philipplange.schorni.src.hilfsklassen.ListenKoordinator;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     NavigationView nvDrawer;
 
+    LinearLayout content;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // erzeugt Testdaten zum Debuggen
-        DatenbankTestdaten.erzeugeDBTestDaten(this);
+        //DatenbankTestdaten.erzeugeDBTestDaten(this);
 
         // Aktive Listen in die Shared Preferences schreiben
         // TODO kann vermutlich gelöscht werden
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
+        content = (LinearLayout) findViewById(R.id.content);
 
         System.out.println();
 

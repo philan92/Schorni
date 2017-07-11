@@ -31,6 +31,8 @@ public class PageFragment extends Fragment {
     private long mlistID; //ListID die vom Fragment angezeigt wird
 
     OffeneKehrungenAdapter adapter;
+    ArrayList<Kehrung> kehrungen;
+    ListenKoordinator listenKoordinator;
 
     public static PageFragment newInstance(int page, long listID) {
         Bundle args = new Bundle();
@@ -55,9 +57,8 @@ public class PageFragment extends Fragment {
 
         // TODO Die Kehrungen in die richtigen Listen aus der DB einfügen
 
-        ArrayList<Kehrung> kehrungen;
 
-        ListenKoordinator listenKoordinator = new ListenKoordinator(getContext());
+        listenKoordinator = new ListenKoordinator(getContext());
         kehrungen = listenKoordinator.offeneKehrungen(mlistID);
 
         // Create the adapter to convert the array to views
@@ -80,5 +81,13 @@ public class PageFragment extends Fragment {
         //TextView textView = (TextView) view;
         //textView.setText("Fragment #" + mPage);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        listenKoordinator = new ListenKoordinator(getContext());
+        kehrungen = listenKoordinator.offeneKehrungen(mlistID);
+        adapter.notifyDataSetChanged();
     }
 }

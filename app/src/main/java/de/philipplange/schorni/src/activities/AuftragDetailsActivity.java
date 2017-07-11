@@ -1,5 +1,6 @@
 package de.philipplange.schorni.src.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import de.philipplange.schorni.R;
 import de.philipplange.schorni.src.hilfsklassen.ListenKoordinator;
@@ -73,6 +75,9 @@ public class AuftragDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 kehrung.setErledigt(999L); // TODO muss durch Timestamp ersetzt werden
                 koordinator.updateKehrung(kehrung);
+                Toast.makeText(AuftragDetailsActivity.this, "Auftrag erledigt", Toast.LENGTH_SHORT).show();
+                Intent auftraegeActivity = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(auftraegeActivity);
                 finish();
             }
         });

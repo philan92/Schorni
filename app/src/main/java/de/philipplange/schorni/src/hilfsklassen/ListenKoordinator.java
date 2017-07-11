@@ -74,7 +74,20 @@ public class ListenKoordinator {
      * @return Liste mit Kehrungen einer bestimmten Tabelle
      */
     public ArrayList<Kehrung> offeneKehrungen(long listID) {
-        return (ArrayList<Kehrung>) cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt isnull").withSelection("tableId = ?", String.valueOf(listID)).list();
+        //return (ArrayList<Kehrung>) cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt isnull").withSelection("tableId = ?", String.valueOf(listID)).list(); // funktioniert vermutlich nicht
+        ArrayList<Kehrung> liste = new ArrayList<>();
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
+        try {
+            QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
+            for (Kehrung kehrung : itr) {
+                if (kehrung.getErledigt() == null && kehrung.getTableId() == listID)
+                    liste.add(kehrung);
+            }
+        } finally {
+            kehrungen.close();
+        }
+        return liste;
+
     }
 
     public ArrayList<Kehrung> erledigteKehrungen() {
