@@ -82,6 +82,12 @@ public class AuftragDetailsActivity extends AppCompatActivity {
             }
         });
 
+        // Button nur zeigen, wenn Auftrag noch nicht abgeschlossen wurde
+        if (kehrung.getErledigt() != null) {
+            btnAbgeschlossen.setEnabled(false);
+            btnAbgeschlossen.setText("Auftrag bereits abgeschlossen");
+        }
+
     }
 
     @Override
@@ -91,4 +97,6 @@ public class AuftragDetailsActivity extends AppCompatActivity {
         kehrung.setKassiert(cbKassiert.isChecked());
         koordinator.updateKehrung(kehrung);
     }
+
+
 }
