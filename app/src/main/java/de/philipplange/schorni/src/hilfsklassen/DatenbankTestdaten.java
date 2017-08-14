@@ -22,91 +22,91 @@ public class DatenbankTestdaten {
         // zu Testzwecken bei jedem Start DB loeschen
         cupboard().withDatabase(db).delete(Kehrung.class, null);
 
-        Kehrung kehrung = new Kehrung("Strasse 1, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "Das ist eine Bemerkung.", false);
+        Kehrung kehrung = new Kehrung("Strasse 1, 123456 Berlin", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "Das ist eine Bemerkung.", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 2, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", true);
+        kehrung = new Kehrung("Strasse 2, 123456 Berlin", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", true);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 3, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 3, 123456 Berlin", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(235);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 4, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 4, 123456 Berlin", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(2);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 5, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 5, 123456 Berlin", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(2);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 6, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 6, 123456 Berlin", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 7, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 7, 123456 Berlin", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 8, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 8, 123456 Berlin", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 20, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 20, 123456 Berlin", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 30, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 30, 123456 Berlin", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 40, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 40, 123456 Berlin", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 50, 123456 Fummelsdorf", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 50, 123456 Berlin", "Neele Rother", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 60, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 60, 123456 Berlin", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 70, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 70, 123456 Berlin", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(1);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 80, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 80, 123456 Berlin", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(22);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 3, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 3, 123456 Berlin", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(2);
         //kehrung.setErledigt(new Date().getTime());
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 4, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 4, 123456 Berlin", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(3);
         cupboard().withDatabase(db).put(kehrung);
 
-        kehrung = new Kehrung("Strasse 3, 123456 Fummelsdorf", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
+        kehrung = new Kehrung("Strasse 3, 123456 Berlin", "Philipp Lange", "123456789", "1xSKF/2", "KamO 2008 Umluft", "", false);
         kehrung.setTableId(20);
         cupboard().withDatabase(db).put(kehrung);
 

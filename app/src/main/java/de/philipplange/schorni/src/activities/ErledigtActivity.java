@@ -32,14 +32,18 @@ public class ErledigtActivity extends AppCompatActivity {
     private NavigationView nvDrawer;
     private ListView listView;
 
+    ErledigteKehrungenAdapter adapter;
+    ArrayList<Kehrung> liste;
+    ListenKoordinator koordinator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_erledigt);
 
         // Liste mit erledigten Kehrungen erstellen
-        ListenKoordinator koordinator = new ListenKoordinator(this);
-        ArrayList<Kehrung> liste = koordinator.erledigteKehrungen();
+        koordinator = new ListenKoordinator(this);
+        liste = koordinator.erledigteKehrungen();
 
 
         // Sidemenu vorbereitung TODO in Funktion auslagern
@@ -77,7 +81,7 @@ public class ErledigtActivity extends AppCompatActivity {
         });
 
         // befüllt die Liste mit den erledigten Aufträgen
-        ErledigteKehrungenAdapter adapter = new ErledigteKehrungenAdapter(this, liste);
+        adapter = new ErledigteKehrungenAdapter(this, liste);
         listView = (ListView) findViewById(R.id.lvErledigt);
         listView.setAdapter(adapter);
 
@@ -101,4 +105,11 @@ public class ErledigtActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        koordinator = new ListenKoordinator(this);
+        liste = koordinator.erledigteKehrungen();
+        adapter.notifyDataSetChanged(); // TODO funktioniert noch nicht
+    }
 }
