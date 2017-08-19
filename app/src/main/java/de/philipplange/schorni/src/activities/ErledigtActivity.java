@@ -75,6 +75,11 @@ public class ErledigtActivity extends AppCompatActivity {
                         startActivity(erledigtActivity);
                         finish();
                         break;
+                    case (R.id.nav_import):
+                        Intent importActivity = new Intent(getApplicationContext(), ImportActivity.class);
+                        startActivity(importActivity);
+                        finish();
+                        break;
                 }
                 return true;
             }

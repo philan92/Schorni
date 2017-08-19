@@ -117,6 +117,46 @@ public class ListenKoordinator {
         return cupboard().withDatabase(db).get(Kehrung.class, id);
     }
 
+
+    // TODO importKehrungen
+
+    /**
+     * Packt eine neue Auftragsliste in die DB und vergibt dieser eine korrekte TabellenID
+     *
+     * @param kehrungen Liste der zu importierenden Kehrungen
+     * @return erfog des Imports
+     */
+    public boolean importKehrungen(ArrayList<Kehrung> kehrungen) {
+        long neueTableID = getNeueListenID();
+        for (Kehrung kehrung : kehrungen) {
+            kehrung.setTableId(neueTableID);
+            cupboard().withDatabase(db).put(kehrung);
+        }
+        return false;
+    }
+
+    /**
+     * Gibt eine neue ListenID zurueck, die um 1 hoeher ist als die bisher vergebenen.
+     *
+     * @return neue verfuegbare ListenID
+     */
+    private long getNeueListenID() {
+        long max = 0;
+
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
+        try {
+            QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
+            for (Kehrung kehrung : itr) {
+                if (kehrung.getTableId() > max)
+                    max = kehrung.getTableId();
+            }
+        } finally {
+            kehrungen.close();
+        }
+
+        return max + 1;
+    }
+
     /**
      * Ersetzt eine Kehrung mit der uebergebenen Kehrung
      *

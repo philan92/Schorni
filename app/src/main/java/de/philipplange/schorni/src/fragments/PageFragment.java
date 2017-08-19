@@ -55,8 +55,6 @@ public class PageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_page, container, false);
 
-        // TODO Die Kehrungen in die richtigen Listen aus der DB einfügen
-
 
         listenKoordinator = new ListenKoordinator(getContext());
         kehrungen = listenKoordinator.offeneKehrungen(mlistID);

@@ -2,6 +2,8 @@ package de.philipplange.schorni;
 
 import org.junit.Test;
 
+import de.philipplange.schorni.src.hilfsklassen.CSVParser;
+
 import static org.junit.Assert.*;
 
 /**
@@ -13,5 +15,10 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public void csvTest() {
+        CSVParser.erstelleKehrungAusString("Adresse    ;   Telefon;   Name   ;Arbeitsinfo;Arbeitskürzel");
     }
 }
