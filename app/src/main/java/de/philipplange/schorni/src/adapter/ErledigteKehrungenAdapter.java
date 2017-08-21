@@ -16,9 +16,7 @@ import java.util.ArrayList;
 import de.philipplange.schorni.R;
 import de.philipplange.schorni.src.models.Kehrung;
 
-/**
- * Created by Philipp on 04.07.2017.
- */
+
 
 public class ErledigteKehrungenAdapter extends ArrayAdapter<Kehrung> {
     public ErledigteKehrungenAdapter(Context context, ArrayList<Kehrung> kehrungen) {
@@ -46,11 +44,13 @@ public class ErledigteKehrungenAdapter extends ArrayAdapter<Kehrung> {
             tvZeit.setText(showDateFromLong(kehrung.getErledigt())); // Zeit vom Abschluss des Auftrags
             tvZeit.setAlpha(0.5f);
             if (!kehrung.isKassiert()) {
-                ivKassiert.setImageResource(R.mipmap.ic_money_off_black_24dp);
-                ivKassiert.setColorFilter(Color.RED);
+                ivKassiert.setImageResource(R.mipmap.ic_money_off_white_24dp);
+                //ivKassiert.setColorFilter(Color.parseColor("#EF5350"));
+                ivKassiert.setBackgroundColor(Color.parseColor("#EF5350"));
             } else {
-                ivKassiert.setImageResource(R.mipmap.ic_attach_money_black_24dp);
-                ivKassiert.setColorFilter(Color.parseColor("#1B5E20"));
+                ivKassiert.setImageResource(R.mipmap.ic_attach_money_white_24dp);
+                //ivKassiert.setColorFilter(Color.parseColor("#43A047"));
+                ivKassiert.setBackgroundColor(Color.parseColor("#43A047"));
             }
         }
 

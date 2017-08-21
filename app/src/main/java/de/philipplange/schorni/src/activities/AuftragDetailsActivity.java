@@ -75,7 +75,7 @@ public class AuftragDetailsActivity extends AppCompatActivity {
         btnAbgeschlossen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                kehrung.setErledigt(new Date().getTime()); // TODO muss durch Timestamp ersetzt werden
+                kehrung.setErledigt(new Date().getTime());
                 koordinator.updateKehrung(kehrung);
                 Toast.makeText(AuftragDetailsActivity.this, "Auftrag erledigt", Toast.LENGTH_SHORT).show();
                 Intent auftraegeActivity = new Intent(getApplicationContext(), MainActivity.class);
@@ -84,11 +84,13 @@ public class AuftragDetailsActivity extends AppCompatActivity {
             }
         });
 
+
         // Button nur zeigen, wenn Auftrag noch nicht abgeschlossen wurde
         if (kehrung.getErledigt() != null) {
             btnAbgeschlossen.setEnabled(false);
             btnAbgeschlossen.setText("Auftrag bereits abgeschlossen");
         }
+
 
     }
 

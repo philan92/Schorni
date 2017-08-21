@@ -15,13 +15,14 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 public class ListenKoordinator {
 
-    DatabaseHelper dbHelper;
-    SQLiteDatabase db;
+    private DatabaseHelper dbHelper;
+    private SQLiteDatabase db;
 
     public ListenKoordinator(Context context) {
         dbHelper = new DatabaseHelper(context);
         db = dbHelper.getWritableDatabase();
     }
+
 
 
     /**
@@ -53,9 +54,8 @@ public class ListenKoordinator {
      * @return Liste aller offenen Kehrungen
      */
     public ArrayList<Long> offeneKehrungen() {
-        // TODO Optimisation; nur Kehrungen die noch nicht abgeschlossen sind aus der DB holen
         ArrayList<Long> liste = new ArrayList<>();
-        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt IS NULL").getCursor();
         try {
             QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
             for (Kehrung kehrung : itr) {
@@ -76,13 +76,12 @@ public class ListenKoordinator {
      * @return Liste mit Kehrungen einer bestimmten Tabelle
      */
     public ArrayList<Kehrung> offeneKehrungen(long listID) {
-        //return (ArrayList<Kehrung>) cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt isnull").withSelection("tableId = ?", String.valueOf(listID)).list(); // funktioniert vermutlich nicht
         ArrayList<Kehrung> liste = new ArrayList<>();
-        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt IS NULL AND tableid = ?", String.valueOf(listID)).getCursor();
         try {
             QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
             for (Kehrung kehrung : itr) {
-                if (kehrung.getErledigt() == null && kehrung.getTableId() == listID)
+                //if (kehrung.getTableId() == listID)
                     liste.add(kehrung);
             }
         } finally {
@@ -93,13 +92,12 @@ public class ListenKoordinator {
     }
 
     public ArrayList<Kehrung> erledigteKehrungen() {
-        // TODO Optimisation; nur Kehrungen die abgeschlossen sind aus der DB holen
+
         ArrayList<Kehrung> liste = new ArrayList<>();
-        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).getCursor(); // Holt alle Kehrungen aus der DB
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt IS NOT NULL").getCursor();
         try {
             QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
             for (Kehrung kehrung : itr) {
-                if (kehrung.getErledigt() != null)
                     liste.add(kehrung);
             }
         } finally {
@@ -117,8 +115,6 @@ public class ListenKoordinator {
         return cupboard().withDatabase(db).get(Kehrung.class, id);
     }
 
-
-    // TODO importKehrungen
 
     /**
      * Packt eine neue Auftragsliste in die DB und vergibt dieser eine korrekte TabellenID

@@ -110,11 +110,4 @@ public class ErledigtActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        koordinator = new ListenKoordinator(this);
-        liste = koordinator.erledigteKehrungen();
-        adapter.notifyDataSetChanged(); // TODO funktioniert noch nicht
-    }
 }

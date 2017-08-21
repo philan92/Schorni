@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // wird noch nicht genutzt
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
