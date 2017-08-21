@@ -9,8 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
-import java.util.Date;
 
 import de.philipplange.schorni.R;
 import de.philipplange.schorni.src.models.Kehrung;
@@ -57,8 +58,15 @@ public class ErledigteKehrungenAdapter extends ArrayAdapter<Kehrung> {
         return convertView;
     }
 
+    /**
+     * Berechnet aus dem long das korrekte Datum und gibt es als String zurueck
+     *
+     * @param longTime
+     * @return
+     */
     private String showDateFromLong(long longTime) {
-        Date date = new Date(longTime);
-        return date.toString();
+        DateTime dateTime = new DateTime(longTime);
+        String string = dateTime.getDayOfMonth() + "." + dateTime.getMonthOfYear() + "." + dateTime.getYear();
+        return string;
     }
 }
