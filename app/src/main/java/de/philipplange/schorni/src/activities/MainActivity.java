@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
         // erzeugt Testdaten zum Debuggen
         //DatenbankTestdaten.erzeugeDBTestDaten(this);
+        // Damit hat man Zugriff auf die Datenbank
+        //DatabaseHelper dbHelper = new DatabaseHelper(this);
+        //SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //cupboard().withDatabase(db).delete(Kehrung.class, null);
 
         // Aktive Listen in die Shared Preferences schreiben
         // TODO kann vermutlich gelöscht werden

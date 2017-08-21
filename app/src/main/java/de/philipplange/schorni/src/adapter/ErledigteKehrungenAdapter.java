@@ -1,13 +1,16 @@
 package de.philipplange.schorni.src.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.philipplange.schorni.R;
 import de.philipplange.schorni.src.models.Kehrung;
@@ -34,16 +37,28 @@ public class ErledigteKehrungenAdapter extends ArrayAdapter<Kehrung> {
         TextView tvAdresse = (TextView) convertView.findViewById(R.id.tvAdresse);
         TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
         TextView tvZeit = (TextView) convertView.findViewById(R.id.tvZeit);
-        TextView tvKassiert = (TextView) convertView.findViewById(R.id.tvKassiert);
+        ImageView ivKassiert = (ImageView) convertView.findViewById(R.id.ivKassiert);
         // Populate the data into the template view using the data object
         if (kehrung != null) {
             tvAdresse.setText(kehrung.getAdresse());
             tvName.setText(kehrung.getName());
-            tvZeit.setText(String.valueOf(kehrung.getErledigt())); // TODO In lesabres Datum ändern
-            tvKassiert.setText("Kassiert: " + kehrung.isKassiert());
+            tvZeit.setText(showDateFromLong(kehrung.getErledigt())); // Zeit vom Abschluss des Auftrags
+            tvZeit.setAlpha(0.5f);
+            if (!kehrung.isKassiert()) {
+                ivKassiert.setImageResource(R.mipmap.ic_money_off_black_24dp);
+                ivKassiert.setColorFilter(Color.RED);
+            } else {
+                ivKassiert.setImageResource(R.mipmap.ic_attach_money_black_24dp);
+                ivKassiert.setColorFilter(Color.parseColor("#1B5E20"));
+            }
         }
 
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    private String showDateFromLong(long longTime) {
+        Date date = new Date(longTime);
+        return date.toString();
     }
 }

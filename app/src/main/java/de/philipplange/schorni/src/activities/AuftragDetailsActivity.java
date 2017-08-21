@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
+
 import de.philipplange.schorni.R;
 import de.philipplange.schorni.src.hilfsklassen.ListenKoordinator;
 import de.philipplange.schorni.src.models.Kehrung;
@@ -73,7 +75,7 @@ public class AuftragDetailsActivity extends AppCompatActivity {
         btnAbgeschlossen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                kehrung.setErledigt(999L); // TODO muss durch Timestamp ersetzt werden
+                kehrung.setErledigt(new Date().getTime()); // TODO muss durch Timestamp ersetzt werden
                 koordinator.updateKehrung(kehrung);
                 Toast.makeText(AuftragDetailsActivity.this, "Auftrag erledigt", Toast.LENGTH_SHORT).show();
                 Intent auftraegeActivity = new Intent(getApplicationContext(), MainActivity.class);
