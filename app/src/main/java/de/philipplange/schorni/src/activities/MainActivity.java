@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         //cupboard().withDatabase(db).delete(Kehrung.class, null);
 
         // Aktive Listen in die Shared Preferences schreiben
-        // TODO kann vermutlich gelöscht werden
+
         ListenKoordinator koordinator = new ListenKoordinator(this);
         ArrayList<Long> liste = koordinator.getAktiveListIDs();
 

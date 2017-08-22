@@ -94,7 +94,7 @@ public class ListenKoordinator {
     public ArrayList<Kehrung> erledigteKehrungen() {
 
         ArrayList<Kehrung> liste = new ArrayList<>();
-        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt IS NOT NULL").getCursor();
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt IS NOT NULL ORDER BY erledigt DESC").getCursor();
         try {
             QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
             for (Kehrung kehrung : itr) {

@@ -44,9 +44,6 @@ import de.philipplange.schorni.src.models.Kehrung;
 import static android.R.attr.x;
 import static android.R.attr.y;
 
-/**
- * Created by Philipp on 14.08.2017.
- */
 
 public class ImportActivity extends AppCompatActivity {
 
@@ -87,7 +84,7 @@ public class ImportActivity extends AppCompatActivity {
         btnSDCard = (Button) findViewById(R.id.btnViewSDCard);
         uploadData = new ArrayList<>();
 
-        //TODO Permissions ueberpruefen
+
         checkFilePermissions();
 
         lvInternalStorage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -205,6 +202,7 @@ public class ImportActivity extends AppCompatActivity {
     private void readExcelData(String filePath) {
         Log.d(TAG, "readExcelData: Reading Excel File.");
 
+
         //decarle input file
         File inputFile = new File(filePath);
 
@@ -225,7 +223,7 @@ public class ImportActivity extends AppCompatActivity {
                     //handles if there are to many columns on the excel sheet.
                     if (c > 1) {
                         Log.e(TAG, "readExcelData: ERROR. Excel File Format is incorrect! ");
-                        toastMessage("ERROR: Excel File Format is incorrect!");
+                        //toastMessage("ERROR: Excel File Format is incorrect!");
                         break;
                     } else {
                         String value = getCellAsString(row, c, formulaEvaluator);
@@ -252,7 +250,9 @@ public class ImportActivity extends AppCompatActivity {
      * Method for parsing imported data and storing in ArrayList<XYValue>
      */
     public void parseStringBuilder(StringBuilder mStringBuilder) {
+        ArrayList<Integer> fehlerhafteZeilen = new ArrayList<>();
         Log.d(TAG, "parseStringBuilder: Started parsing.");
+
 
         // splits the sb into rows.
         String[] rows = mStringBuilder.toString().split(":");
@@ -270,7 +270,8 @@ public class ImportActivity extends AppCompatActivity {
                 if (kehrung != null)
                     uploadData.add(kehrung);
                 else {
-                    Log.e(TAG, "Formatfehler in EXCEL-Datei."); // TODO fehlerhafte Zeile angeben (i + 1)
+                    Log.e(TAG, "Formatfehler in EXCEL-Datei in Zeile " + (i + 2));
+                    fehlerhafteZeilen.add(i + 2);
                 }
 
             } catch (NumberFormatException e) {
@@ -280,11 +281,17 @@ public class ImportActivity extends AppCompatActivity {
             }
         }
 
-        printDataToLog();
-        // TODO uploadData in DB speichern
-        ListenKoordinator koordinator = new ListenKoordinator(this);
-        koordinator.importKehrungen(uploadData);
-        Toast.makeText(this, "Kehrungen importiert.", Toast.LENGTH_SHORT).show();
+        //printDataToLog();
+
+        if (fehlerhafteZeilen.isEmpty()) {
+            ListenKoordinator koordinator = new ListenKoordinator(this);
+            koordinator.importKehrungen(uploadData);
+            Toast.makeText(this, "Kehrungen importiert.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Fehler in Zeile " + fehlerhafteZeilen.toString() + " der Exceltabelle.", Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
 
@@ -292,8 +299,8 @@ public class ImportActivity extends AppCompatActivity {
         Log.d(TAG, "printDataToLog: Printing data to log...");
 
         for (int i = 0; i < uploadData.size(); i++) {
-            //TODO  double x = uploadData.get(i).getX();
-            //TODO double y = uploadData.get(i).getY();
+            //double x = uploadData.get(i).getX();
+            //double y = uploadData.get(i).getY();
             Log.d(TAG, "printDataToLog: (x,y): (" + x + "," + y + ")");
         }
     }
