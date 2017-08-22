@@ -19,9 +19,9 @@ public class CSVParser {
             werte[i] = werte[i].trim();
         }
         Kehrung kehrung = new Kehrung(werte[0], werte[2], werte[1], werte[4], werte[3], "", false);
-        if (kehrung.getName().isEmpty() || kehrung.getAdresse().isEmpty())
-            return null;
-        else
+        if (!kehrung.getName().isEmpty() && !kehrung.getAdresse().isEmpty())
             return kehrung;
+        else
+            return null;
     }
 }

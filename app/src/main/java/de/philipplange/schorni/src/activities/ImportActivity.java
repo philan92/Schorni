@@ -265,6 +265,10 @@ public class ImportActivity extends AppCompatActivity {
             //use try catch to make sure there are no "" that try to parse into doubles.
             try {
                 String x = columns[0];
+                // TODO nur parsen, wenn zeile nicht leer ist
+                if (columns[0].trim().isEmpty() && columns[1].trim().isEmpty()) {
+                    continue;
+                }
                 Kehrung kehrung = CSVParser.erstelleKehrungAusString(x);
                 //add the the uploadData ArrayList
                 if (kehrung != null)
