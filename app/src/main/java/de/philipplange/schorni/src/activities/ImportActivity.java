@@ -168,6 +168,11 @@ public class ImportActivity extends AppCompatActivity {
                         startActivity(importActivity);
                         finish();
                         break;
+                    case (R.id.nav_export):
+                        Intent exportActivity = new Intent(getApplicationContext(), ExportActivity.class);
+                        startActivity(exportActivity);
+                        finish();
+                        break;
                 }
                 return true;
             }
@@ -265,7 +270,7 @@ public class ImportActivity extends AppCompatActivity {
             //use try catch to make sure there are no "" that try to parse into doubles.
             try {
                 String x = columns[0];
-                // TODO nur parsen, wenn zeile nicht leer ist
+                // nur Parsen, wenn die ersten beiden spalten nicht leer sind
                 if (columns[0].trim().isEmpty() && columns[1].trim().isEmpty()) {
                     continue;
                 }

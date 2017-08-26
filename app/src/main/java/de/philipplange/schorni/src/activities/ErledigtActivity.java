@@ -80,6 +80,11 @@ public class ErledigtActivity extends AppCompatActivity {
                         startActivity(importActivity);
                         finish();
                         break;
+                    case (R.id.nav_export):
+                        Intent exportActivity = new Intent(getApplicationContext(), ExportActivity.class);
+                        startActivity(exportActivity);
+                        finish();
+                        break;
                 }
                 return true;
             }

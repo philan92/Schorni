@@ -19,13 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".src.activities.ErledigtActivity" />
         <activity android:name=".src.activities.ImportActivity" />
         <activity
             android:name=".src.activities.AuftragDetailsActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert"
             android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".src.activities.ExportActivity"></activity>
     </application>
 
 </manifest>
