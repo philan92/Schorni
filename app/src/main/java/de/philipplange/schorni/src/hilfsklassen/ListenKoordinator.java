@@ -161,4 +161,22 @@ public class ListenKoordinator {
     public void updateKehrung(Kehrung kehrung) {
         cupboard().withDatabase(db).put(kehrung);
     }
+
+    public ArrayList<Kehrung> getErledigteAuftraegeVonBis(long ab, long bis) {
+        ArrayList<Kehrung> liste = new ArrayList<>();
+        Cursor kehrungen = cupboard().withDatabase(db).query(Kehrung.class).withSelection("erledigt IS NOT NULL AND erledigt >= "+ String.valueOf(ab) +" AND erledigt <= "+ String.valueOf(bis)+" ORDER BY tableid").getCursor();
+        try {
+            QueryResultIterable<Kehrung> itr = cupboard().withCursor(kehrungen).iterate(Kehrung.class);
+            for (Kehrung kehrung : itr) {
+                liste.add(kehrung);
+            }
+        } finally {
+            kehrungen.close();
+        }
+        return liste;
+    }
+
+    public void loescheErledigteAuftraegeVonBis(long ab, long bis) {
+        cupboard().withDatabase(db).delete(Kehrung.class, "erledigt IS NOT NULL AND erledigt >= "+ String.valueOf(ab) +" AND erledigt <= "+ String.valueOf(bis));
+    }
 }
