@@ -7,10 +7,11 @@ android {
         applicationId "de.philipplange.schorni"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 7
-        versionName "0.0.8"
+        versionCode 8
+        versionName "Beta 0.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        compileOptions.encoding = 'UTF-8'
     }
     buildTypes {
         release {

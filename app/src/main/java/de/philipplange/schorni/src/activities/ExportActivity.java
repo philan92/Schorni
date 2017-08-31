@@ -145,8 +145,14 @@ public class ExportActivity extends AppCompatActivity {
         });
     }
 
+    // Gibt dem Menubutton seine Funktionalität
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return mToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+    }
+
     /**
-     * erzeugt einen String der die Export-Textdatei darstellt und versendet sie mit Hilfe der Android Sharemoeglichkeit
+     * erzeugt einen String, der die Export-Textdatei darstellt und versendet sie mit Hilfe der Android Sharemoeglichkeit
      */
     private void exportieren() {
         if (rbEinenTag.isChecked()) {

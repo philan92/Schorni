@@ -15,8 +15,12 @@ import de.philipplange.schorni.src.models.Kehrung;
 public class TextDateiGenerator {
     public String erzeugeformatiertenTxt(ArrayList<Kehrung> liste) {
         String s = "";
+        String kassiert = "kassiert";
         for (Kehrung k : liste) {
-            s += "# " + String.valueOf(k.getTableId()) +" | "+ new DateTime(k.getErledigt()).toString("dd.MM.yyyy") + " | "+ k.getAdresse() + " // " + k.getBemerkungen() + "\n";
+            if (k.isKassiert())
+                s += "# " + String.valueOf(k.getTableId()) + " | " + new DateTime(k.getErledigt()).toString("dd.MM.yyyy") + " | " + k.getAdresse() + " | " + kassiert + " // " + k.getBemerkungen() + "\n";
+            else
+                s += "# " + String.valueOf(k.getTableId()) + " | " + new DateTime(k.getErledigt()).toString("dd.MM.yyyy") + " | " + k.getAdresse() + " // " + k.getBemerkungen() + "\n";
         }
         Log.d("TEXTDATEI", s);
         return s;

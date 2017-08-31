@@ -25,14 +25,11 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -207,8 +204,43 @@ public class ImportActivity extends AppCompatActivity {
     private void readExcelData(String filePath) {
         Log.d(TAG, "readExcelData: Reading Excel File.");
 
+        File file = new File(filePath);
+        ArrayList<Integer> fehlerhafteZeilen = new ArrayList<>();
+        int fehler = 0;
 
-        //decarle input file
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            int zeilennummer = 0;
+            while ((line = br.readLine()) != null) {
+                zeilennummer++;
+                Kehrung kehrung = CSVParser.erstelleKehrungAusString(line);
+                if (kehrung != null)
+                    uploadData.add(kehrung);
+                else {
+                    fehler++;
+                    fehlerhafteZeilen.add(zeilennummer);
+                }
+
+            }
+            br.close();
+
+        } catch (IOException e) {
+            //You'll need to add proper error handling here
+        }
+
+        Toast.makeText(this, "Fehler:" + fehler, Toast.LENGTH_SHORT).show();
+        if (fehlerhafteZeilen.isEmpty()) {
+            ListenKoordinator koordinator = new ListenKoordinator(this);
+            koordinator.importKehrungen(uploadData);
+            Toast.makeText(this, "Kehrungen importiert.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Fehler in Zeile " + fehlerhafteZeilen.toString() + " der Exceltabelle.", Toast.LENGTH_LONG).show();
+        }
+
+
+        /*//decarle input file
         File inputFile = new File(filePath);
 
         try {
@@ -247,13 +279,13 @@ public class ImportActivity extends AppCompatActivity {
             Log.e(TAG, "readExcelData: FileNotFoundException. " + e.getMessage());
         } catch (IOException e) {
             Log.e(TAG, "readExcelData: Error reading inputstream. " + e.getMessage());
-        }
+        }*/
     }
 
 
     /**
      * Method for parsing imported data and storing in ArrayList<XYValue>
-     */
+     *//*
     public void parseStringBuilder(StringBuilder mStringBuilder) {
         ArrayList<Integer> fehlerhafteZeilen = new ArrayList<>();
         Log.d(TAG, "parseStringBuilder: Started parsing.");
@@ -301,7 +333,7 @@ public class ImportActivity extends AppCompatActivity {
         }
 
 
-    }
+    }*/
 
 
     private void printDataToLog() {
