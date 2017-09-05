@@ -1,5 +1,6 @@
 package de.philipplange.schorni.src.activities;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -7,10 +8,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
@@ -35,6 +43,9 @@ public class ErledigtActivity extends AppCompatActivity {
     ErledigteKehrungenAdapter adapter;
     ArrayList<Kehrung> liste;
     ListenKoordinator koordinator;
+
+    DateTime temp; // für Contextmenu benoetigt
+    Kehrung tempKehrung;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +117,9 @@ public class ErledigtActivity extends AppCompatActivity {
             }
         });
 
+        // Contextmenu um die Zeit nachtraeglich zu aendern
+        registerForContextMenu(listView);
+
     }
 
     // Gibt dem Menubutton seine Funktionalität
@@ -113,6 +127,47 @@ public class ErledigtActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return mToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
+
+
+    // Contextmenu
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        if (v.getId() == R.id.lvErledigt) {
+            ListView lv = (ListView) v;
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            tempKehrung = (Kehrung) lv.getItemAtPosition(acmi.position);
+            menu.add("Zeitpunkt ändern");
+
+
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+                .getMenuInfo();
+        switch (item.getItemId()) {
+            case 0:
+                DateTime date = new DateTime(tempKehrung.getErledigt());
+                DatePickerDialog pickerDialogVon = new DatePickerDialog(this, d, date.getYear(), date.getMonthOfYear() - 1, date.getDayOfMonth());
+                pickerDialogVon.show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+            DateTime date = new DateTime(year, monthOfYear + 1, dayOfMonth, 0, 0);
+            tempKehrung.setErledigt(date.getMillis());
+            koordinator.updateKehrung(tempKehrung);
+            // Activity neustarten
+            Intent intent = new Intent(getApplicationContext(), ErledigtActivity.class);
+            startActivity(intent);
+        }
+    };
 
 
 }
