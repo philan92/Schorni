@@ -29,7 +29,7 @@ public class AuftragDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auftrag_detail);
+        setContentView(R.layout.activity_auftrag_detail_2);
         setTitle("Auftragsdetails");
 
         tvAuftragsID = (TextView) findViewById(R.id.tvAuftragsID);

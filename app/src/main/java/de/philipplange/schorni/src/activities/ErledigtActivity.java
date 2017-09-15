@@ -166,6 +166,7 @@ public class ErledigtActivity extends AppCompatActivity {
             // Activity neustarten
             Intent intent = new Intent(getApplicationContext(), ErledigtActivity.class);
             startActivity(intent);
+            finish();
         }
     };
 
